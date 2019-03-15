@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_witchcraft',
+    'user',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +80,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
   'default': {
+    'ENGINE': 'django.db.backends.mysql',
     'NAME': 'my_project_db',
     'USER': 'root',
     'PASSWORD': '123456',

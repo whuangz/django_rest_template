@@ -22,3 +22,19 @@ Dockerize Django RESTFull Template
 ```
 	docker-compose up
 ```
+#4. Create Migration With Alembic (If you don't want to use standard ORM)
+```
+	docker-compose run web alembic init --templaet generic alembic
+```
+#4.1 Change the sql driver in alembic.ini
+```
+	sqlalchemy.url = mysql://root:@localhost/database_name
+```
+#4.2 Create Migration using alembic
+```
+	docker-compose run web alembic revision -m "[TEXT]"
+```
+#4.2 Migrate file
+```
+	docker-compose run web alembic upgrade head
+```
