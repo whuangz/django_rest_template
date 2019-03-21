@@ -2,7 +2,7 @@ import core.api_controllers as base_controller
 import json
 
 from rest_framework.decorators import api_view
-from core.models import Article
+from models import Article
 from core.base import session
 from core.serializers import ArticleSerializer
 from sqlalchemy import text

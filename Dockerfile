@@ -1,6 +1,4 @@
-FROM dockerfiles/django-uwsgi-nginx
-FROM python:3.6
-
+FROM tnir/mysqlclient
 
 MAINTAINER WHuangz Dev
 

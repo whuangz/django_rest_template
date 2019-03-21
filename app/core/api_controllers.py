@@ -1,10 +1,13 @@
+import json
+import traceback
+
 from rest_framework.response import Response
 from http import HTTPStatus
-import json
 from django.http import HttpResponse
-import traceback
 from functools import wraps
 from sqlalchemy.exc import SQLAlchemyError
+from .logger import Logger
+from auth import Auth
 
 def exception_handler(f):
     @wraps(f)
@@ -48,12 +51,9 @@ def render_json(status=HTTPStatus.OK, data=None, serializer=None, as_array=False
     if type(meta) == dict:
         payload['meta'] = meta
 
-    response_body = json.dumps(payload, indent=4, sort_keys=False)
-
-    response = Response(response_body, content_type = 'application/json')
-    #response.headers.add('Cache-Control', 'public, max-age=' + str(ttl))
-    response.status_code  = status
-    #logging().info("[API] response body : {}".format(payload))
-    #return response
-    return HttpResponse(json.dumps(payload), content_type='application/json')
+    
+    response = Response(payload, status= status ,content_type = 'application/json')
+    response['Cache-Control'] = 'public, max-age=' + str(ttl)
+    Logger().info("[API] response body : {}".format(payload))
+    return response
 

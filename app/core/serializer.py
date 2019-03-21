@@ -24,17 +24,3 @@ class BaseSerializer():
             return json.dumps(self.list())
         else:
             return json.dumps(self.data())
-
-class ArticleSerializer(BaseSerializer):
-
-    def __init__(self, article):
-        super().__init__(ArticleSerializer, article)
-
-    def data(self):
-        article = self.item
-        mapper = {
-            "id": article.id,
-            "title": article.title,
-            "summary": article.summary,
-        }
-        return mapper
